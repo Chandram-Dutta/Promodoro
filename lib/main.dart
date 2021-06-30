@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Promodoro',
       theme: ThemeData(
+          fontFamily: "SF",
           brightness: Brightness.dark,
           primaryColor: Colors.blue[900],
           accentColor: Colors.red[600]),
