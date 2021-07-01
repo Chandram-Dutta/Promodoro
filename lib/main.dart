@@ -23,8 +23,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  double totalPercent = 0;
+  double totaltimeMin = 0;
+  double totaltimeSec = 0;
+  double restPercent = 0;
+  double resttimeMin = 0;
+  double resttimeSec = 0;
+  double workPercent = 0;
+  double worktimeMin = 0;
+  double worktimeSec = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -114,13 +129,35 @@ class Home extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Card(
-                                child: Text("Work Time"),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Work Time"),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8, right: 8, bottom: 8),
+                                      child: Text("$worktimeMin"),
+                                    )
+                                  ],
+                                ),
                               ),
                               Card(
-                                child: Text("Break Time"),
+                                child: Column(
+                                  children: [
+                                    Text("Break Time"),
+                                    Text("$resttimeMin")
+                                  ],
+                                ),
                               ),
                               Card(
-                                child: Text("No. of Rounds"),
+                                child: Column(
+                                  children: [
+                                    Text("No. of Rounds"),
+                                    Text("2"),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
