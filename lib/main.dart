@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(>MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -32,8 +32,37 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("Promodoro"),
       ),
-      body: Column(
-        children: [],
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            CircularPercentIndicator(
+              radius: 200.0,
+              lineWidth: 10.0,
+              percent: 1.0,
+              progressColor: Colors.red,
+              center: CircularPercentIndicator(
+                radius: 150.0,
+                lineWidth: 10.0,
+                percent: 1.0,
+                progressColor: Colors.green,
+                center: CircularPercentIndicator(
+                  radius: 100.0,
+                  lineWidth: 10.0,
+                  percent: 1.0,
+                  center: IconButton(
+                      onPressed: () {}, icon: Icon(Icons.play_arrow)),
+                  progressColor: Colors.blue,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
