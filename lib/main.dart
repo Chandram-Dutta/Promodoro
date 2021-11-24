@@ -32,6 +32,9 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("Promodoro"),
       ),
+      body: Column(
+        children: [],
+      ),
     );
   }
 }
