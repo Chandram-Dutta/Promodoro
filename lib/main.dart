@@ -4,8 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:promodoro/providers.dart';
 
-final buttonIconProvider = StateProvider((_) => Icons.play_arrow);
-
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }
@@ -89,10 +87,15 @@ class _IndicatorsState extends ConsumerState<Indicators> {
           center: IconButton(
               onPressed: () {
                 setState(() {
-                  ref.read(buttonIconProvider.state).state = Icons.pause;
+                  if (ref.read(buttonIconProvider.state).state ==
+                      Icons.play_arrow) {
+                    ref.read(buttonIconProvider.state).state = Icons.pause;
+                  } else {
+                    ref.read(buttonIconProvider.state).state = Icons.play_arrow;
+                  }
                 });
               },
-              icon: Icon(ref.watch(buttonIconProvider))),
+              icon: Icon(ref.read(buttonIconProvider))),
           progressColor: Colors.blue,
         ),
       ),

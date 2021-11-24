@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProviderProj {
-  final buttonIconProvider = StateProvider((_) => Icons.play_arrow);
-}
+final buttonIconProvider = StateProvider((_) => Icons.play_arrow);
