@@ -8,6 +8,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text("Promodoro"),
       ),
       body: SizedBox(

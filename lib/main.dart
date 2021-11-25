@@ -18,8 +18,21 @@ class MyApp extends StatelessWidget {
       title: 'Promodoro',
       theme: ThemeData(
         fontFamily: "SF",
-        brightness: Brightness.dark,
-        primaryColor: Colors.blue[900],
+        primaryColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: ColorScheme.light(),
+      ),
+      darkTheme: ThemeData(
+        fontFamily: "SF",
+        primaryColor: Colors.black,
+        appBarTheme:
+            AppBarTheme(backgroundColor: Colors.black, centerTitle: true),
+        scaffoldBackgroundColor: Colors.black,
+        colorScheme: ColorScheme.dark(),
       ),
       home: Home(),
     );
