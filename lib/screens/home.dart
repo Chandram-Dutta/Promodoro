@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(50),
                   topRight: Radius.circular(50),

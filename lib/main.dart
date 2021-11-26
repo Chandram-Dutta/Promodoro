@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
         scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.light(),
+        colorScheme: ColorScheme.light(
+          secondary: Colors.grey.shade100,
+        ),
       ),
       darkTheme: ThemeData(
         fontFamily: "SF",
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
         appBarTheme:
             AppBarTheme(backgroundColor: Colors.black, centerTitle: true),
         scaffoldBackgroundColor: Colors.black,
-        colorScheme: ColorScheme.dark(),
+        colorScheme: ColorScheme.dark(
+          secondary: Colors.grey.shade900,
+        ),
       ),
       home: Home(),
     );
