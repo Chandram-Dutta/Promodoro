@@ -24,12 +24,12 @@ class _IndicatorsState extends ConsumerState<Indicators> {
       radius: 200.0,
       lineWidth: 10.0,
       percent: 1.0,
-      progressColor: Colors.red,
+      progressColor: Color.fromRGBO(255, 0, 0, 1),
       center: CircularPercentIndicator(
         radius: 150.0,
         lineWidth: 10.0,
         percent: 1.0,
-        progressColor: Colors.green,
+        progressColor: Color.fromRGBO(51, 255, 0, 1),
         center: CircularPercentIndicator(
           radius: 100.0,
           lineWidth: 10.0,
@@ -46,7 +46,7 @@ class _IndicatorsState extends ConsumerState<Indicators> {
                 });
               },
               icon: Icon(ref.read(buttonIconProvider))),
-          progressColor: Colors.blue,
+          progressColor: Color.fromRGBO(0, 255, 247, 1),
         ),
       ),
     );

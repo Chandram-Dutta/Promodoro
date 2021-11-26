@@ -20,7 +20,20 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Indicators()
+            Indicators(),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+              ),
+              height: MediaQuery.of(context).size.height - 296,
+            )
           ],
         ),
       ),
