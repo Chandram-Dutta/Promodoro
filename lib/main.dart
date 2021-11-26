@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.light(
-          secondary: Colors.grey.shade100,
+          secondary: Colors.grey.shade300,
         ),
       ),
       darkTheme: ThemeData(
