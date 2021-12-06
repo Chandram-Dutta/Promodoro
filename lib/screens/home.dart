@@ -42,9 +42,11 @@ class Home extends ConsumerWidget {
                   ),
                   ref.watch(isPauseProvider)
                       ? PauseTimerSettings()
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                        ),
+                      : Placeholder(
+                          color: Colors.white,
+                          fallbackHeight:
+                              MediaQuery.of(context).size.height - 326,
+                        )
                 ],
               ),
             )
@@ -55,19 +57,28 @@ class Home extends ConsumerWidget {
   }
 }
 
-class PauseTimerSettings extends StatelessWidget {
+class PauseTimerSettings extends ConsumerWidget {
   const PauseTimerSettings({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        DisplayCards(label: "Work Time"),
-        DisplayCards(label: "Rest Time"),
-        DisplayCards(label: "Rounds"),
+        DisplayCards(
+          label: "Work Time",
+          timeValue: ref.watch(workTimeProvider),
+        ),
+        DisplayCards(
+          label: "Rest Time",
+          timeValue: ref.watch(restTimeProvider),
+        ),
+        DisplayCards(
+          label: "Rounds",
+          timeValue: ref.watch(roundsProvider),
+        ),
       ],
     );
   }
@@ -76,28 +87,57 @@ class PauseTimerSettings extends StatelessWidget {
 class DisplayCards extends StatelessWidget {
   const DisplayCards({
     @required this.label,
+    @required this.timeValue,
     Key? key,
   }) : super(key: key);
 
   final String? label;
+  final int? timeValue;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: SizedBox(
-        height: 75,
-        width: MediaQuery.of(context).size.width / 3 - 20,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Text(
-                label.toString(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+      child: InkWell(
+        onTap: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('More Features To Come'),
+            content: const Text('Blah! Blah!'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
               ),
-            )
-          ],
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        ),
+        child: SizedBox(
+          height: 75,
+          width: MediaQuery.of(context).size.width / 3 - 20,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Text(
+                  label.toString(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Text(
+                timeValue.toString(),
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                "mins",
+                style: TextStyle(fontSize: 12),
+              )
+            ],
+          ),
         ),
       ),
     );

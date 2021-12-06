@@ -42,9 +42,9 @@ class _IndicatorsState extends ConsumerState<Indicators> {
                 if (ref.read(buttonIconProvider.state).state ==
                     Icons.play_arrow) {
                   ref.read(buttonIconProvider.state).state = Icons.pause;
-                  ref.read(isPauseProvider.state).state = true;
-                } else {
                   ref.read(isPauseProvider.state).state = false;
+                } else {
+                  ref.read(isPauseProvider.state).state = true;
                   ref.read(buttonIconProvider.state).state = Icons.play_arrow;
                 }
               });
