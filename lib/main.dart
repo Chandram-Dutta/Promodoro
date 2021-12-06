@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.light(
-          secondary: Colors.grey.shade500,
+          secondary: Colors.red.shade900,
         ),
       ),
       darkTheme: ThemeData(
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
             AppBarTheme(backgroundColor: Colors.black, centerTitle: true),
         scaffoldBackgroundColor: Colors.black,
         colorScheme: ColorScheme.dark(
-          secondary: Colors.grey.shade900,
+          secondary: Colors.red.shade900,
         ),
       ),
       home: Home(),

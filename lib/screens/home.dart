@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:promodoro/providers.dart';
 import 'package:promodoro/widgets/indicators.dart';
 
-class Home extends StatelessWidget {
+class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -38,7 +40,11 @@ class Home extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  PauseTimerSettings(),
+                  ref.watch(isPauseProvider)
+                      ? PauseTimerSettings()
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                        ),
                 ],
               ),
             )
@@ -59,34 +65,41 @@ class PauseTimerSettings extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Card(
-          child: SizedBox(
-            height: 75,
-            width: MediaQuery.of(context).size.width / 3 - 20,
-            child: Column(
-              children: [Text("Work Time")],
-            ),
-          ),
-        ),
-        Card(
-          child: SizedBox(
-            height: 75,
-            width: MediaQuery.of(context).size.width / 3 - 20,
-            child: Column(
-              children: [Text("Rest Time")],
-            ),
-          ),
-        ),
-        Card(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width / 3 - 20,
-            height: 75,
-            child: Column(
-              children: [Text("Rounds")],
-            ),
-          ),
-        ),
+        DisplayCards(label: "Work Time"),
+        DisplayCards(label: "Rest Time"),
+        DisplayCards(label: "Rounds"),
       ],
+    );
+  }
+}
+
+class DisplayCards extends StatelessWidget {
+  const DisplayCards({
+    @required this.label,
+    Key? key,
+  }) : super(key: key);
+
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: SizedBox(
+        height: 75,
+        width: MediaQuery.of(context).size.width / 3 - 20,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Text(
+                label.toString(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

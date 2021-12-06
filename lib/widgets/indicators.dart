@@ -34,19 +34,22 @@ class _IndicatorsState extends ConsumerState<Indicators> {
           radius: 100.0,
           lineWidth: 10.0,
           percent: 1.0,
-          center: IconButton(
-              onPressed: () {
-                setState(() {
-                  if (ref.read(buttonIconProvider.state).state ==
-                      Icons.play_arrow) {
-                    ref.read(buttonIconProvider.state).state = Icons.pause;
-                  } else {
-                    ref.read(buttonIconProvider.state).state = Icons.play_arrow;
-                  }
-                });
-              },
-              icon: Icon(ref.read(buttonIconProvider))),
           progressColor: Color.fromRGBO(0, 255, 247, 1),
+          center: IconButton(
+            icon: Icon(ref.watch(buttonIconProvider)),
+            onPressed: () {
+              setState(() {
+                if (ref.read(buttonIconProvider.state).state ==
+                    Icons.play_arrow) {
+                  ref.read(buttonIconProvider.state).state = Icons.pause;
+                  ref.read(isPauseProvider.state).state = true;
+                } else {
+                  ref.read(isPauseProvider.state).state = false;
+                  ref.read(buttonIconProvider.state).state = Icons.play_arrow;
+                }
+              });
+            },
+          ),
         ),
       ),
     );
