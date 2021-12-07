@@ -70,7 +70,11 @@ class PauseTimerSettings extends ConsumerWidget {
           height: 50,
           child: CupertinoButton.filled(
             child: Text("Reset"),
-            onPressed: () {},
+            onPressed: () {
+              ref.watch(instRestTimeProvider.state).state = 0;
+              ref.watch(instWorkTimeProvider.state).state = 0;
+              ref.watch(instRoundsProvider.state).state = 0;
+            },
           ),
         ),
         SizedBox(

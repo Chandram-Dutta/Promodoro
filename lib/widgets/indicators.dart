@@ -67,14 +67,13 @@ class _IndicatorsState extends ConsumerState<Indicators> {
               });
               while (ref.watch(instWorkTimeProvider) !=
                   ref.watch(initialWorkTimeProvider)) {
-                await Future.delayed(const Duration(seconds: 2));
+                await Future.delayed(const Duration(seconds: 1));
                 if (!ref.watch(isPauseProvider)) {
                   ref.read(instWorkTimeProvider.state).state++;
                 } else {
                   break;
                 }
                 setState(() {});
-                print(ref.read(instWorkTimeProvider));
               }
             },
           ),
