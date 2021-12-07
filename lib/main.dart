@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.light(
-          secondary: Colors.red.shade900,
+          secondary: Color.fromRGBO(255, 0, 0, 1),
         ),
       ),
       darkTheme: ThemeData(
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             AppBarTheme(backgroundColor: Colors.black, centerTitle: true),
         scaffoldBackgroundColor: Colors.black,
         colorScheme: ColorScheme.dark(
-          secondary: Colors.red.shade900,
+          secondary: Color.fromRGBO(255, 0, 0, 1),
         ),
       ),
       home: Home(),

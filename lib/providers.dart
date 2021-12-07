@@ -9,14 +9,14 @@ final isPauseProvider = StateProvider<bool>((ref) {
   return true;
 });
 
-final workTimeProvider = StateProvider<int>((ref) {
+final initialWorkTimeProvider = StateProvider<int>((ref) {
   return 45;
 });
 
-final restTimeProvider = StateProvider<int>((ref) {
+final initialRestTimeProvider = StateProvider<int>((ref) {
   return 15;
 });
 
-final roundsProvider = StateProvider<int>((ref) {
+final initialRoundsProvider = StateProvider<int>((ref) {
   return 3;
 });

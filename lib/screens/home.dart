@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:promodoro/providers.dart';
@@ -30,15 +31,15 @@ class Home extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
                 ),
               ),
               height: MediaQuery.of(context).size.height - 296,
               child: Column(
                 children: [
                   SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   ref.watch(isPauseProvider)
                       ? PauseTimerSettings()
@@ -58,27 +59,43 @@ class Home extends ConsumerWidget {
 }
 
 class PauseTimerSettings extends ConsumerWidget {
-  const PauseTimerSettings({
-    Key? key,
-  }) : super(key: key);
+  const PauseTimerSettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
       children: [
-        DisplayCards(
-          label: "Work Time",
-          timeValue: ref.watch(workTimeProvider),
+        SizedBox(
+          width: MediaQuery.of(context).size.width - 25,
+          height: 50,
+          child: CupertinoButton.filled(
+            child: Text("Reset"),
+            onPressed: () {},
+          ),
         ),
-        DisplayCards(
-          label: "Rest Time",
-          timeValue: ref.watch(restTimeProvider),
+        SizedBox(
+          height: 20,
         ),
-        DisplayCards(
-          label: "Rounds",
-          timeValue: ref.watch(roundsProvider),
-        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            DisplayCards(
+              label: "Work Time",
+              timeValue: ref.watch(initialWorkTimeProvider),
+              timeUnits: "Mins",
+            ),
+            DisplayCards(
+              label: "Rest Time",
+              timeValue: ref.watch(initialRestTimeProvider),
+              timeUnits: "Mins",
+            ),
+            DisplayCards(
+              label: "Rounds",
+              timeValue: ref.watch(initialRoundsProvider),
+              timeUnits: "",
+            ),
+          ],
+        )
       ],
     );
   }
@@ -88,11 +105,13 @@ class DisplayCards extends StatelessWidget {
   const DisplayCards({
     @required this.label,
     @required this.timeValue,
+    @required this.timeUnits,
     Key? key,
   }) : super(key: key);
 
   final String? label;
   final int? timeValue;
+  final String? timeUnits;
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +152,7 @@ class DisplayCards extends StatelessWidget {
                 style: TextStyle(fontSize: 25),
               ),
               Text(
-                "mins",
+                timeUnits.toString(),
                 style: TextStyle(fontSize: 12),
               )
             ],
@@ -143,3 +162,38 @@ class DisplayCards extends StatelessWidget {
     );
   }
 }
+
+
+
+//  // return Column(
+//     //     children: [
+//     //       SizedBox(
+//     //         width: 24,
+//     //         height: 25,
+//     //         child: CupertinoButton.filled(child: Text("Reset"), onPressed: () {}),
+//     //       ),
+//     //       SizedBox(
+//     //         height: 20,
+//     //       ),
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       children: [
+//         DisplayCards(
+//           label: "Work Time",
+//           timeValue: ref.watch(initialWorkTimeProvider),
+//           timeUnits: "Mins",
+//         ),
+//         DisplayCards(
+//           label: "Rest Time",
+//           timeValue: ref.watch(initialRestTimeProvider),
+//           timeUnits: "Mins",
+//         ),
+//         DisplayCards(
+//           label: "Rounds",
+//           timeValue: ref.watch(initialRoundsProvider),
+//           timeUnits: "",
+//         ),
+//       ],
+//     );
+//     // ],
+//     // );
