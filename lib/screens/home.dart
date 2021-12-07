@@ -56,7 +56,7 @@ class Home extends ConsumerWidget {
                                     "assets/rive/pomodoro_green.riv",
                                     fit: BoxFit.fill),
                                 Text(
-                                  "Work Time Remaining\n" +
+                                  "Work Time Passed\n" +
                                       ref
                                           .watch(instWorkTimeProvider)
                                           .toString() +
