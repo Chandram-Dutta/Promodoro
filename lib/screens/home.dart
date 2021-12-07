@@ -41,16 +41,36 @@ class Home extends ConsumerWidget {
                 children: [
                   SizedBox(
                     height: 10,
+                    width: MediaQuery.of(context).size.width,
                   ),
                   ref.watch(isPauseProvider)
                       ? PauseTimerSettings()
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width - 25,
-                          height: 200,
-                          child: Stack(children: [
-                            RiveAnimation.asset(
-                                "assets/rive/pomodoro_green.riv")
-                          ]),
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width - 20,
+                            height: 200,
+                            child: Stack(
+                              children: [
+                                RiveAnimation.asset(
+                                    "assets/rive/pomodoro_green.riv",
+                                    fit: BoxFit.fill),
+                                Text(
+                                  "Work Time Remaining\n" +
+                                      ref
+                                          .watch(instWorkTimeProvider)
+                                          .toString() +
+                                      "\nMinutes",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                  ),
+                                )
+                              ],
+                              alignment: AlignmentDirectional.center,
+                            ),
+                          ),
                         )
                 ],
               ),
@@ -91,16 +111,19 @@ class PauseTimerSettings extends ConsumerWidget {
               label: "Work Time",
               timeValue: ref.watch(initialWorkTimeProvider),
               timeUnits: "Mins",
+              cardColor: Color.fromRGBO(51, 255, 0, 1),
             ),
             DisplayCards(
               label: "Rest Time",
               timeValue: ref.watch(initialRestTimeProvider),
               timeUnits: "Mins",
+              cardColor: Color.fromRGBO(0, 255, 247, 1),
             ),
             DisplayCards(
               label: "Rounds",
               timeValue: ref.watch(initialRoundsProvider),
               timeUnits: "",
+              cardColor: Colors.white,
             ),
           ],
         )
@@ -109,34 +132,61 @@ class PauseTimerSettings extends ConsumerWidget {
   }
 }
 
-class DisplayCards extends StatelessWidget {
+class DisplayCards extends ConsumerStatefulWidget {
   const DisplayCards({
     @required this.label,
     @required this.timeValue,
     @required this.timeUnits,
+    @required this.cardColor,
     Key? key,
   }) : super(key: key);
 
   final String? label;
   final int? timeValue;
   final String? timeUnits;
+  final Color? cardColor;
 
+  @override
+  _DisplayCardsState createState() => _DisplayCardsState();
+}
+
+class _DisplayCardsState extends ConsumerState<DisplayCards> {
+  final textInputController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: widget.cardColor,
       child: InkWell(
         onTap: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: const Text('More Features To Come'),
-            content: const Text('Blah! Blah!'),
+            title: Text("Set " + widget.label.toString()),
+            content: TextField(
+              keyboardType: TextInputType.number,
+              controller: textInputController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+              ),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
                 child: const Text('Cancel'),
               ),
               TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
+                onPressed: () {
+                  if (widget.label == "Work Time") {
+                    int value = int.parse(textInputController.text);
+                    ref.watch(initialWorkTimeProvider.state).state = value;
+                  } else if (widget.label == "Rest Time") {
+                    int value = int.parse(textInputController.text);
+                    ref.watch(initialRestTimeProvider.state).state = value;
+                  } else if (widget.label == "Rounds") {
+                    int value = int.parse(textInputController.text);
+                    ref.watch(initialRoundsProvider.state).state = value;
+                  }
+                  Navigator.pop(context, 'OK');
+                },
                 child: const Text('OK'),
               ),
             ],
@@ -150,18 +200,19 @@ class DisplayCards extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Text(
-                  label.toString(),
+                  widget.label.toString(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
               Text(
-                timeValue.toString(),
-                style: TextStyle(fontSize: 25),
+                widget.timeValue.toString(),
+                style: TextStyle(fontSize: 25, color: Colors.black),
               ),
               Text(
-                timeUnits.toString(),
-                style: TextStyle(fontSize: 12),
+                widget.timeUnits.toString(),
+                style: TextStyle(fontSize: 12, color: Colors.black),
               )
             ],
           ),
