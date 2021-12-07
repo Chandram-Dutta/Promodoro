@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:promodoro/providers.dart';
 import 'package:promodoro/widgets/indicators.dart';
+import 'package:rive/rive.dart';
 
 class Home extends ConsumerWidget {
   const Home({Key? key}) : super(key: key);
@@ -43,10 +44,13 @@ class Home extends ConsumerWidget {
                   ),
                   ref.watch(isPauseProvider)
                       ? PauseTimerSettings()
-                      : Placeholder(
-                          color: Colors.white,
-                          fallbackHeight:
-                              MediaQuery.of(context).size.height - 326,
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width - 25,
+                          height: 200,
+                          child: Stack(children: [
+                            RiveAnimation.asset(
+                                "assets/rive/pomodoro_green.riv")
+                          ]),
                         )
                 ],
               ),
@@ -166,38 +170,3 @@ class DisplayCards extends StatelessWidget {
     );
   }
 }
-
-
-
-//  // return Column(
-//     //     children: [
-//     //       SizedBox(
-//     //         width: 24,
-//     //         height: 25,
-//     //         child: CupertinoButton.filled(child: Text("Reset"), onPressed: () {}),
-//     //       ),
-//     //       SizedBox(
-//     //         height: 20,
-//     //       ),
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//       children: [
-//         DisplayCards(
-//           label: "Work Time",
-//           timeValue: ref.watch(initialWorkTimeProvider),
-//           timeUnits: "Mins",
-//         ),
-//         DisplayCards(
-//           label: "Rest Time",
-//           timeValue: ref.watch(initialRestTimeProvider),
-//           timeUnits: "Mins",
-//         ),
-//         DisplayCards(
-//           label: "Rounds",
-//           timeValue: ref.watch(initialRoundsProvider),
-//           timeUnits: "",
-//         ),
-//       ],
-//     );
-//     // ],
-//     // );
