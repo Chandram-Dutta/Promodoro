@@ -20,3 +20,15 @@ final initialRestTimeProvider = StateProvider<int>((ref) {
 final initialRoundsProvider = StateProvider<int>((ref) {
   return 3;
 });
+
+final instWorkTimeProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+final instRestTimeProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+final instRoundsProvider = StateProvider<int>((ref) {
+  return 0;
+});
