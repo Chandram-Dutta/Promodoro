@@ -98,6 +98,8 @@ class PauseTimerSettings extends ConsumerWidget {
               ref.watch(instRestTimeProvider.state).state = 0;
               ref.watch(instWorkTimeProvider.state).state = 0;
               ref.watch(instRoundsProvider.state).state = 0;
+              ref.watch(isRestProvider.state).state = false;
+              ref.watch(isPauseProvider.state).state = true;
             },
           ),
         ),

@@ -8,6 +8,9 @@ final buttonIconProvider = StateProvider<IconData>((ref) {
 final isPauseProvider = StateProvider<bool>((ref) {
   return true;
 });
+final isRestProvider = StateProvider<bool>((ref) {
+  return false;
+});
 
 final initialWorkTimeProvider = StateProvider<int>((ref) {
   return 45;
