@@ -45,8 +45,8 @@ class _IndicatorsState extends ConsumerState<Indicators> {
           if (ref.watch(instWorkTimeProvider) /
                   ref.watch(initialWorkTimeProvider) ==
               1) {
-            ref.watch(instRestTimeProvider.state).state = 0;
-            ref.watch(isRestProvider.state).state = true;
+            ref.read(instRestTimeProvider.state).state = 0;
+            ref.read(isRestProvider.state).state = true;
           }
         },
         center: CircularPercentIndicator(

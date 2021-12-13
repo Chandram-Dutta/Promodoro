@@ -52,9 +52,13 @@ class Home extends ConsumerWidget {
                             height: MediaQuery.of(context).size.height - 320,
                             child: Stack(
                               children: [
-                                RiveAnimation.asset(
-                                    ref.watch(riveAnimationProvider),
-                                    fit: BoxFit.fill),
+                                ref.watch(isPauseProvider)
+                                    ? RiveAnimation.asset(
+                                        "assets/rive/pomodoro_red.riv",
+                                        fit: BoxFit.fill)
+                                    : RiveAnimation.asset(
+                                        "assets/rive/pomodoro_green.riv",
+                                        fit: BoxFit.fill),
                                 Text(
                                   "Work Time Passed\n" +
                                       ref
