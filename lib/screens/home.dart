@@ -49,11 +49,11 @@ class Home extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(8),
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width - 20,
-                            height: 200,
+                            height: MediaQuery.of(context).size.height - 320,
                             child: Stack(
                               children: [
                                 RiveAnimation.asset(
-                                    "assets/rive/pomodoro_green.riv",
+                                    ref.watch(riveAnimationProvider),
                                     fit: BoxFit.fill),
                                 Text(
                                   "Work Time Passed\n" +
@@ -63,7 +63,7 @@ class Home extends ConsumerWidget {
                                       "\nMinutes",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize: 18,
                                   ),
                                 )

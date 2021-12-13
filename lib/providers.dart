@@ -35,3 +35,7 @@ final instRestTimeProvider = StateProvider<int>((ref) {
 final instRoundsProvider = StateProvider<int>((ref) {
   return 0;
 });
+
+final riveAnimationProvider = StateProvider<String>((ref) {
+  return "assets/rive/pomodoro_green.riv";
+});
