@@ -1,6 +1,9 @@
 # Promodoro
+An Pomodoro Timer App by Using Flutter UI Toolkit
 
-A Promodoro app by Using Flutter Framework
+## Screenshots
+
+
 
 ## Getting Started
 
